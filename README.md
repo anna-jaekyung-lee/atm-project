@@ -71,12 +71,3 @@ line and a non-zero exit code if anything failed. Tests cover the full
 required flow (insert card -> correct PIN -> select account -> balance
 / deposit / withdraw), incorrect PIN, unknown account, insufficient
 funds, wrong-state calls, and session reset via `cancel()`.
-
-## Out of Scope / Future Integration
-
-- Real bank and ATM hardware (card reader, cash bin) integration are
-  out of scope by design. `BankAPI` is the seam for plugging in a real
-  bank backend; a similar interface for the physical cash bin could be
-  added the same way if/when that integration is needed.
-- No persistence across process restarts - state lives in memory in
-  the `ATMController` instance for the duration of one session.
