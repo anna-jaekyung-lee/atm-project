@@ -12,18 +12,18 @@ bills exist in this simplified world.
 ## Design
 
 `ATMController` is the testable business logic / state machine. It has
-no knowledge of any UI, network protocol, or real hardware - it depends
+no knowledge of any UI, network protocol, or real hardware. It depends
 only on the `BankAPI` interface, passed in through its constructor. A
 real bank integration would be a new class that inherits from `BankAPI`
 and implements its functions for real; `ATMController` itself would not
-need to change at all. Note that the bank never exposes the actual PIN
-to the ATM - `verifyPin()` only returns whether it was correct.
+need to change at all. The bank never exposes the actual PIN
+to the ATM, and `verifyPin()` only returns whether it was correct.
 
 `BankAPI` is an abstract class: it declares its functions as `virtual`
 with no body, which means "any class that inherits from me must provide
 its own version of this function." `ATMController` only ever talks to a
 `BankAPI*` pointer, so at runtime it doesn't matter whether that pointer
-points to a real bank connection or, as in the tests, a fake one - the
+points to a real bank connection or, as in the tests, a fake one. The
 right version of the function runs either way.
 
 ```
